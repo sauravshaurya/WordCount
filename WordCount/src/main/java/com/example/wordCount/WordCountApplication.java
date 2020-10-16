@@ -38,7 +38,7 @@ public class WordCountApplication {
 					.flatMapValues(value -> Arrays.asList(value.toLowerCase().split("\\W+")))
 					.map((key, value) -> new KeyValue<>(value, value))
 					.groupByKey(Grouped.with(Serdes.String(), Serdes.String()))
-					.windowedBy(TimeWindows.of(Duration.ofMillis(WINDOW_SIZE_MS)))
+					
 					.count(Materialized.as("WordCounts-1"))
 					.toStream()
 					.map((key, value) -> new KeyValue<>(null, new WordCount(key.key(), value, new Date(key.window().start()), new Date(key.window().end()))));
