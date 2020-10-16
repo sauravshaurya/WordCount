@@ -1,1 +1,1 @@
-# WordCount
+# WordCount Java Spring Cloud Stream Application
