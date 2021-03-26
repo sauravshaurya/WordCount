@@ -67,9 +67,7 @@ public class WordCountApplication {
 			return sb.toString();
 		}
 
-		WordCount() {
-
-		}
+		WordCount() {}
 
 		WordCount(String word, long count, Date start, Date end) {
 			this.word = word;
