@@ -32,7 +32,7 @@ public class WordCountApplication {
 		public static final int WINDOW_SIZE_MS = 30000;
 
 		@Bean
-		public Function<KStream<Bytes, String>, KStream<Bytes, WordCount>> process() {
+		public Function<KStream<Bytes, String>, KStream<Object, Object>> process() {
 
 			return input -> input
 					.flatMapValues(value -> Arrays.asList(value.toLowerCase().split("\\W+")))
@@ -40,7 +40,9 @@ public class WordCountApplication {
 					.groupByKey(Grouped.with(Serdes.String(), Serdes.String()))
 					.count(Materialized.as("WordCounts-1"))
 					.toStream()
-					.map((key, value) -> new KeyValue<>(null, new WordCount(key.key(), value, new Date(key.window().start()), new Date(key.window().end()))));
+					.map((key, value) -> {
+                        return new KeyValue<>(key.toUpperCase(), value);
+                    });
 		}
 	}
 
