@@ -30,6 +30,7 @@ public class WordCountApplication {
 		public static final String INPUT_TOPIC = "input";
 		public static final String OUTPUT_TOPIC = "output";
 		public static final int WINDOW_SIZE_MS = 30000;
+		public static  final int value = 100;
 
 		@Bean
 		public Function<KStream<Bytes, String>, KStream<Object, Object>> process() {
