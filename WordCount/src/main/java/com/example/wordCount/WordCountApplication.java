@@ -26,7 +26,6 @@ public class WordCountApplication {
 	}
 	
 	public static class WordCountProcessorApplication {
-		
 
 		public static final String INPUT_TOPIC = "input";
 		public static final String OUTPUT_TOPIC = "output";
